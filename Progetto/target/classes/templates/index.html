@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Biblioteca Personale</title>
+</head>
+<body>
+    <h1>Biblioteca Personale</h1>
+
+    <!-- Form per aggiungere un nuovo libro -->
+    <h2>Aggiungi un Nuovo Libro</h2>
+    <form th:action="@{ / }" th:object="${libro}" method="post">
+        <label for="titolo">Titolo:</label>
+        <input type="text" th:field="*{titolo}" required><br>
+
+        <label for="autore">Autore:</label>
+        <input type="text" th:field="*{autore}" required><br>
+
+        <label for="annoPubblicazione">Anno di Pubblicazione:</label>
+        <input type="number" th:field="*{annoPubblicazione}" required><br>
+
+        <label for="genere">Genere:</label>
+        <input type="text" th:field="*{genere}" required><br>
+
+        <button type="submit">Aggiungi</button>
+    </form>
+
+    <!-- Lista dei libri -->
+    <h2>Libri nella Biblioteca</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Titolo</th>
+                <th>Autore</th>
+                <th>Anno di Pubblicazione</th>
+                <th>Genere</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="libro : ${libri}">
+                <td th:text="${libro.titolo}"></td>
+                <td th:text="${libro.autore}"></td>
+                <td th:text="${libro.annoPubblicazione}"></td>
+                <td th:text="${libro.genere}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
